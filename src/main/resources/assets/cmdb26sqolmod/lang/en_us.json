@@ -2,5 +2,14 @@
   "itemGroup.modtab1": "cmdb26's QOL Mod",
   "block.cmdb26sqolmod.ruby_ore": "Ruby Ore",
   "block.cmdb26sqolmod.ruby_block": "Ruby Block",
-  "item.cmdb26sqolmod.ruby": "Ruby"
+  "item.cmdb26sqolmod.ruby": "Ruby",
+  "item.cmdb26sqolmod.ruby_sword": "Ruby Sword",
+  "item.cmdb26sqolmod.ruby_pickaxe": "Ruby Pickaxe",
+  "item.cmdb26sqolmod.ruby_axe": "Ruby Axe",
+  "item.cmdb26sqolmod.ruby_shovel": "Ruby Shovel",
+  "item.cmdb26sqolmod.ruby_hoe": "Ruby Hoe",
+  "item.cmdb26sqolmod.ruby_helmet": "Ruby Helmet",
+  "item.cmdb26sqolmod.ruby_chestplate": "Ruby Chestplate",
+  "item.cmdb26sqolmod.ruby_leggings": "Ruby Leggings",
+  "item.cmdb26sqolmod.ruby_boots": "Ruby Boots"
 }

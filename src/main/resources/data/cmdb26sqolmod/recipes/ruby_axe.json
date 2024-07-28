@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "xx ",
+    "xy ",
+    " y "
+  ],
+  "key": {
+    "x": {
+      "item": "cmdb26sqolmod:ruby"
+    },
+    "y": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "cmdb26sqolmod:ruby_axe"
+  }
+}

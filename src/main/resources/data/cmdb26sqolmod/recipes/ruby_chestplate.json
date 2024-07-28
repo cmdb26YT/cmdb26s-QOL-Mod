@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "x x",
+    "xxx",
+    "xxx"
+  ],
+  "key": {
+    "x": {
+      "item": "cmdb26sqolmod:ruby"
+    }
+  },
+  "result": {
+    "item": "cmdb26sqolmod:ruby_chestplate"
+  }
+}

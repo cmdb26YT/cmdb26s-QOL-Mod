@@ -23,8 +23,8 @@ import java.util.stream.Collectors;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(Cmdb26sQOLMod.MOD_ID)
-public class Cmdb26sQOLMod
-{
+public class Cmdb26sQOLMod {
+
     public static final String MOD_ID = "cmdb26sqolmod";
 
     // Directly reference a log4j logger.
