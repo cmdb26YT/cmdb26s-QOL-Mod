@@ -8,6 +8,7 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
+
 public class ModItems {
 
     public static final DeferredRegister<Item> ITEMS =
@@ -18,8 +19,26 @@ public class ModItems {
     public static final RegistryObject<Item> RUBY = ITEMS.register("ruby",
             () -> new Item(new Item.Properties().group(ModItemGroup.mod_tab_1)));
 
+    public static final RegistryObject<Item> EMERALD = ITEMS.register("emerald",
+            () -> new Item(new Item.Properties().group(ModItemGroup.mod_tab_1)));
+
+    public static final RegistryObject<Item> NETHER_STAR = ITEMS.register("netherstar",
+            () -> new Item(new Item.Properties().group(ModItemGroup.mod_tab_1)));
+
+    public static final RegistryObject<Item> APPLE_PIE = ITEMS.register("apple_pie",
+            () -> new Item(new Item.Properties()
+                    .food(new Food.Builder().hunger(8).saturation(4.8f).build())
+                    .group(ItemGroup.FOOD)));
+
+    public static final RegistryObject<Item> ROASTED_CARROT = ITEMS.register("roasted_carrot",
+            () -> new Item(new Item.Properties()
+                    .food(new Food.Builder().hunger(6).saturation(6.0f).build())
+                    .group(ItemGroup.FOOD)));
+
 
     //  Tools
+
+    //      Ruby Tools
     public static final RegistryObject<Item> RUBY_SWORD = ITEMS.register("ruby_sword",
             () -> new SwordItem(ModItemTier.RUBY, -1, -2f,
                     new Item.Properties().group(ModItemGroup.mod_tab_1)));
@@ -40,8 +59,52 @@ public class ModItems {
             () -> new HoeItem(ModItemTier.RUBY, -6, 0f,
                     new Item.Properties().group(ModItemGroup.mod_tab_1)));
 
+    //      Emerald Tools
+    public static final RegistryObject<Item> EMERALD_SWORD = ITEMS.register("emerald_sword",
+            () -> new SwordItem(ModItemTier.EMERALD, 3, -2.8f,
+                    new Item.Properties().group(ModItemGroup.mod_tab_1)));
+
+    public static final RegistryObject<Item> EMERALD_PICKAXE = ITEMS.register("emerald_pickaxe",
+            () -> new PickaxeItem(ModItemTier.EMERALD, -2, -2.8f,
+                    new Item.Properties().group(ModItemGroup.mod_tab_1)));
+
+    public static final RegistryObject<Item> EMERALD_AXE = ITEMS.register("emerald_axe",
+            () -> new AxeItem(ModItemTier.EMERALD, 5.5f, -3.2f,
+                    new Item.Properties().group(ModItemGroup.mod_tab_1)));
+
+    public static final RegistryObject<Item> EMERALD_SHOVEL = ITEMS.register("emerald_shovel",
+            () -> new ShovelItem(ModItemTier.EMERALD, -0.5f, -3f,
+                    new Item.Properties().group(ModItemGroup.mod_tab_1)));
+
+    public static final RegistryObject<Item> EMERALD_HOE = ITEMS.register("emerald_hoe",
+            () -> new HoeItem(ModItemTier.EMERALD, -6, 0f,
+                    new Item.Properties().group(ModItemGroup.mod_tab_1)));
+
+    //      Nether Star Tools
+    public static final RegistryObject<Item> NETHER_STAR_SWORD = ITEMS.register("nether_star_sword",
+            () -> new SwordItem(ModItemTier.NETHER_STAR, 3, -2f,
+                    new Item.Properties().group(ModItemGroup.mod_tab_1)));
+
+    public static final RegistryObject<Item> NETHER_STAR_PICKAXE = ITEMS.register("nether_star_pickaxe",
+            () -> new PickaxeItem(ModItemTier.NETHER_STAR, -2, -2.8f,
+                    new Item.Properties().group(ModItemGroup.mod_tab_1)));
+
+    public static final RegistryObject<Item> NETHER_STAR_AXE = ITEMS.register("nether_star_axe",
+            () -> new AxeItem(ModItemTier.NETHER_STAR, 5.5f, -2.5f,
+                    new Item.Properties().group(ModItemGroup.mod_tab_1)));
+
+    public static final RegistryObject<Item> NETHER_STAR_SHOVEL = ITEMS.register("nether_star_shovel",
+            () -> new ShovelItem(ModItemTier.NETHER_STAR, -0.5f, -3f,
+                    new Item.Properties().group(ModItemGroup.mod_tab_1)));
+
+    public static final RegistryObject<Item> NETHER_STAR_HOE = ITEMS.register("nether_star_hoe",
+            () -> new HoeItem(ModItemTier.NETHER_STAR, -6, 0f,
+                    new Item.Properties().group(ModItemGroup.mod_tab_1)));
+
 
     //  Armor
+
+    //      Ruby Armor
     public static final RegistryObject<Item> RUBY_HELMET = ITEMS.register("ruby_helmet",
             () -> new ArmorItem(ModArmorMaterial.RUBY, EquipmentSlotType.HEAD,
                     new Item.Properties().group(ModItemGroup.mod_tab_1)));
@@ -56,6 +119,40 @@ public class ModItems {
 
     public static final RegistryObject<Item> RUBY_BOOTS = ITEMS.register("ruby_boots",
             () -> new ArmorItem(ModArmorMaterial.RUBY, EquipmentSlotType.FEET,
+                    new Item.Properties().group(ModItemGroup.mod_tab_1)));
+
+    //      Emerald Armor
+    public static final RegistryObject<Item> EMERALD_HELMET = ITEMS.register("emerald_helmet",
+            () -> new ArmorItem(ModArmorMaterial.EMERALD, EquipmentSlotType.HEAD,
+                    new Item.Properties().group(ModItemGroup.mod_tab_1)));
+
+    public static final RegistryObject<Item> EMERALD_CHESTPLATE = ITEMS.register("emerald_chestplate",
+            () -> new ArmorItem(ModArmorMaterial.EMERALD, EquipmentSlotType.CHEST,
+                    new Item.Properties().group(ModItemGroup.mod_tab_1)));
+
+    public static final RegistryObject<Item> EMERALD_LEGGINGS = ITEMS.register("emerald_leggings",
+            () -> new ArmorItem(ModArmorMaterial.EMERALD, EquipmentSlotType.LEGS,
+                    new Item.Properties().group(ModItemGroup.mod_tab_1)));
+
+    public static final RegistryObject<Item> EMERALD_BOOTS = ITEMS.register("emerald_boots",
+            () -> new ArmorItem(ModArmorMaterial.EMERALD, EquipmentSlotType.FEET,
+                    new Item.Properties().group(ModItemGroup.mod_tab_1)));
+
+    //      Nether Star Armor
+    public static final RegistryObject<Item> NETHER_STAR_HELMET = ITEMS.register("nether_star_helmet",
+            () -> new ArmorItem(ModArmorMaterial.NETHER_STAR, EquipmentSlotType.HEAD,
+                    new Item.Properties().group(ModItemGroup.mod_tab_1)));
+
+    public static final RegistryObject<Item> NETHER_STAR_CHESTPLATE = ITEMS.register("nether_star_chestplate",
+            () -> new ArmorItem(ModArmorMaterial.NETHER_STAR, EquipmentSlotType.CHEST,
+                    new Item.Properties().group(ModItemGroup.mod_tab_1)));
+
+    public static final RegistryObject<Item> NETHER_STAR_LEGGINGS = ITEMS.register("nether_star_leggings",
+            () -> new ArmorItem(ModArmorMaterial.NETHER_STAR, EquipmentSlotType.LEGS,
+                    new Item.Properties().group(ModItemGroup.mod_tab_1)));
+
+    public static final RegistryObject<Item> NETHER_STAR_BOOTS = ITEMS.register("nether_star_boots",
+            () -> new ArmorItem(ModArmorMaterial.NETHER_STAR, EquipmentSlotType.FEET,
                     new Item.Properties().group(ModItemGroup.mod_tab_1)));
 
 

@@ -7,13 +7,13 @@
   ],
   "key": {
     "x": {
-      "item": "cmdb26sqolmod:ruby"
+      "item": "minecraft:nether_star"
     },
     "y": {
       "item": "minecraft:stick"
     }
   },
   "result": {
-    "item": "cmdb26sqolmod:ruby_shovel"
+    "item": "cmdb26sqolmod:nether_star_shovel"
   }
 }

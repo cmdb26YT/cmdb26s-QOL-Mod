@@ -1,19 +1,19 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    " xx",
-    " yx",
-    " y "
+    "x",
+    "y",
+    "y"
   ],
   "key": {
     "x": {
-      "item": "cmdb26sqolmod:ruby"
+      "item": "minecraft:emerald"
     },
     "y": {
       "item": "minecraft:stick"
     }
   },
   "result": {
-    "item": "cmdb26sqolmod:ruby_axe"
+    "item": "cmdb26sqolmod:emerald_shovel"
   }
 }

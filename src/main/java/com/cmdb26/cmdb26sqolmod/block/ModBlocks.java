@@ -32,6 +32,11 @@ public class ModBlocks {
                     .sound(SoundType.METAL).harvestLevel(2).harvestTool(ToolType.PICKAXE)
                     .setRequiresTool().hardnessAndResistance(5f)));
 
+    public static final RegistryObject<Block> NETHER_STAR_BLOCK = registerBlock("nether_star_block",
+            () -> new Block(AbstractBlock.Properties.create(Material.ICE)
+                    .sound(SoundType.GLASS).harvestLevel(2).harvestTool(ToolType.PICKAXE)
+                    .setRequiresTool().hardnessAndResistance(7.5f)));
+
     private static <T extends Block>RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn);

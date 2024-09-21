@@ -8,12 +8,16 @@ import java.util.function.Supplier;
 
 public enum ModItemTier implements IItemTier {
 
-    RUBY(2,1627, 10f, 6f, 18, ()
-            -> Ingredient.fromItems(ModItems.RUBY.get()));
 
+    RUBY(2,1627, 15f, 6f, 27, ()
+            -> Ingredient.fromItems(ModItems.RUBY.get())),
 
+    EMERALD (4,2727, 10.0f, 6f, 16, ()
+            -> Ingredient.fromItems(ModItems.EMERALD.get())),
 
-//  EMERALD(2, 1234, 5f, 4f, 10, () -> Ingredient.fromItems(Minecraft.emerald.get()));
+    NETHER_STAR (5,3500, 17.5f, 6f, 32, ()
+            -> Ingredient.fromItems(ModItems.NETHER_STAR.get()));
+
 
     private final int harvestLevel;
     private final int maxUses;

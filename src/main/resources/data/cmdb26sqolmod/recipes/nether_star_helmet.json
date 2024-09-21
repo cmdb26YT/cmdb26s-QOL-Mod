@@ -1,16 +1,16 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "x x",
+    "xxx",
     "x x"
 
   ],
   "key": {
     "x": {
-      "item": "cmdb26sqolmod:ruby"
+      "item": "minecraft:nether_star"
     }
   },
   "result": {
-    "item": "cmdb26sqolmod:ruby_boots"
+    "item": "cmdb26sqolmod:nether_star_helmet"
   }
 }

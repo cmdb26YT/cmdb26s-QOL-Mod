@@ -15,15 +15,19 @@ import java.util.function.Supplier;
 public enum ModArmorMaterial implements IArmorMaterial {
 
     RUBY("ruby", 7, new int[] { 2, 5, 6, 2 }, 12,
-            SoundEvents.ITEM_ARMOR_EQUIP_IRON, 5f, 0.0f, () -> {
+            SoundEvents.ITEM_ARMOR_EQUIP_IRON, 6f, 0.0f, () -> {
         return Ingredient.fromItems(ModItems.RUBY.get());
-    });
-    //,
+    }),
 
-//    EMERALD("emerald", 7, new int[] { 2, 5, 6, 2 }, 12,
-//            SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0f, 0.0f, () -> {
-//        return Ingredient.fromItems(ModItems.EMERALD.get());
-//    });
+    EMERALD("emerald", 7, new int[] { 3, 6, 8, 3 }, 12,
+            SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 0.0f, 0.2f, () -> {
+        return Ingredient.fromItems(ModItems.EMERALD.get());
+    }),
+
+    NETHER_STAR("nether_star", 7, new int[] { 3, 6, 8, 3 }, 12,
+            SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE, 6f, 0.2f, () -> {
+        return Ingredient.fromItems(ModItems.NETHER_STAR.get());
+    });
 
     private static final int[] MAX_DAMAGE_ARRAY = new int[]{13, 15, 16, 11};
     private final String name;

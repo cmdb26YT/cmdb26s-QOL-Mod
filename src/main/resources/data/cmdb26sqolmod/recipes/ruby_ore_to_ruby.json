@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient":
+  {
+    "item":"cmdb26sqolmod:ruby_ore"
+  },
+  "result": "cmdb26sqolmod:ruby",
+  "experience": 1.0,
+  "cookingtime": 200
+}

@@ -23,3 +23,31 @@ run
 
 # Files from Forge MDK
 forge*changelog.txt
+
+# Ignore system files
+NTUSER.DAT
+*.log
+*.regtrans-ms
+
+# Ignore personal directories
+/.bash_history
+/.cache/
+/.gradle/
+/.lesshst
+/.p2/
+/.tabnine/
+/tooling/
+/AppData/
+/Saved Games/
+/OneDrive/
+
+# Windows system files
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.bak
+
+# macOS system files
+.DS_Store
+
+

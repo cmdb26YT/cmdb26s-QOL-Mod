@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient":
+  {
+    "item":"minecraft:carrot"
+  },
+  "result": "cmdb26sqolmod:roasted_carrot",
+  "experience": 0.35,
+  "cookingtime": 200
+}
