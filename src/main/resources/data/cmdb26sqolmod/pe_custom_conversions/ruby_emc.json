@@ -1,0 +1,9 @@
+{
+  "comment": "Default conversions for this mod's modded items",
+  "values": {
+    "before": {
+      "cmdb26sqolmod:ruby": 5012,
+      "cmdb26sqolmod:ruby_ore": 5012
+    }
+  }
+}

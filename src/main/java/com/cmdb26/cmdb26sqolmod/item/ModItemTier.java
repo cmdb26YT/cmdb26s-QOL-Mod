@@ -1,6 +1,7 @@
 package com.cmdb26.cmdb26sqolmod.item;
 
 import net.minecraft.item.IItemTier;
+import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.LazyValue;
 
@@ -13,10 +14,10 @@ public enum ModItemTier implements IItemTier {
             -> Ingredient.fromItems(ModItems.RUBY.get())),
 
     EMERALD (4,2727, 10.0f, 6f, 16, ()
-            -> Ingredient.fromItems(ModItems.EMERALD.get())),
+            -> Ingredient.fromItems(Items.EMERALD)),
 
     NETHER_STAR (5,3500, 17.5f, 6f, 32, ()
-            -> Ingredient.fromItems(ModItems.NETHER_STAR.get()));
+            -> Ingredient.fromItems(Items.NETHER_STAR));
 
 
     private final int harvestLevel;
