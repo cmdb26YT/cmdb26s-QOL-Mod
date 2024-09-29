@@ -3,6 +3,7 @@ package com.cmdb26.cmdb26sqolmod.item;
 import com.cmdb26.cmdb26sqolmod.Cmdb26sQOLMod;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
+import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.LazyValue;
 import net.minecraft.util.SoundEvent;
@@ -14,24 +15,25 @@ import java.util.function.Supplier;
 
 public enum ModArmorMaterial implements IArmorMaterial {
 
-    RUBY("ruby", 7, new int[] { 2, 5, 6, 2 }, 12,
+    RUBY("ruby", new float[] {327.0f, 87.5f, 45.4f, 142.5f},
+            new int[] { 2, 5, 6, 2 }, 12,
             SoundEvents.ITEM_ARMOR_EQUIP_IRON, 6f, 0.0f, () -> {
         return Ingredient.fromItems(ModItems.RUBY.get());
     }),
 
-    EMERALD("emerald", 7, new int[] { 3, 6, 8, 3 }, 12,
+    EMERALD("emerald", new float[] {455.0f, 131.25f, 95.4f, 128.4f}, new int[] { 3, 6, 8, 3 }, 12,
             SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 0.0f, 0.2f, () -> {
-        return Ingredient.fromItems(ModItems.EMERALD.get());
+        return Ingredient.fromItems(Items.EMERALD);
     }),
 
-    NETHER_STAR("nether_star", 7, new int[] { 3, 6, 8, 3 }, 12,
+    NETHER_STAR("nether_star", new float[] {782.0f, 218.75f, 166.72f, 219.0f}, new int[] { 3, 6, 8, 3 }, 12,
             SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE, 6f, 0.2f, () -> {
-        return Ingredient.fromItems(ModItems.NETHER_STAR.get());
+        return Ingredient.fromItems(Items.NETHER_STAR);
     });
 
-    private static final int[] MAX_DAMAGE_ARRAY = new int[]{13, 15, 16, 11};
+    private static final int[] BASE_DURABILITY = new int[]{1, 4, 6, 3};
     private final String name;
-    private final int maxDamageFactor;
+    private final float[] maxDamageFactor;
     private final int[] damageReductionAmountArray;
     private final int enchantability;
     private final SoundEvent soundEvent;
@@ -39,23 +41,23 @@ public enum ModArmorMaterial implements IArmorMaterial {
     private final float knockbackResistance;
     private final LazyValue<Ingredient> repairMaterial;
 
-    private ModArmorMaterial(String p_i231593_3_, int p_i231593_4_, int[] p_i231593_5_, int p_i231593_6_, SoundEvent p_i231593_7_, float p_i231593_8_, float p_i231593_9_, Supplier p_i231593_10_) {
-        this.name = p_i231593_3_;
-        this.maxDamageFactor = p_i231593_4_;
-        this.damageReductionAmountArray = p_i231593_5_;
-        this.enchantability = p_i231593_6_;
-        this.soundEvent = p_i231593_7_;
-        this.toughness = p_i231593_8_;
-        this.knockbackResistance = p_i231593_9_;
-        this.repairMaterial = new LazyValue(p_i231593_10_);
+    private ModArmorMaterial(String name, float[] maxDamageFactor, int[] damageReductionAmountArray, int enchantability, SoundEvent soundEvent, float toughness, float knockbackResistance, Supplier<Ingredient> repairMaterial) {
+        this.name = name;
+        this.maxDamageFactor = maxDamageFactor;
+        this.damageReductionAmountArray = damageReductionAmountArray;
+        this.enchantability = enchantability;
+        this.soundEvent = soundEvent;
+        this.toughness = toughness;
+        this.knockbackResistance = knockbackResistance;
+        this.repairMaterial = new LazyValue<>(() -> Ingredient.fromItems(ModItems.RUBY.get()));
     }
 
-    public int getDurability(EquipmentSlotType p_200896_1_) {
-        return MAX_DAMAGE_ARRAY[p_200896_1_.getIndex()] * this.maxDamageFactor;
+    public int getDurability(EquipmentSlotType slot) {
+        return (int)(BASE_DURABILITY[slot.getIndex()] * this.maxDamageFactor[slot.getIndex()]);
     }
 
-    public int getDamageReductionAmount(EquipmentSlotType p_200902_1_) {
-        return this.damageReductionAmountArray[p_200902_1_.getIndex()];
+    public int getDamageReductionAmount(EquipmentSlotType slot) {
+        return this.damageReductionAmountArray[slot.getIndex()];
     }
 
     public int getEnchantability() {
