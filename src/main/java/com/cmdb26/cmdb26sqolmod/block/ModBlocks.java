@@ -23,7 +23,7 @@ public class ModBlocks {
             = DeferredRegister.create(ForgeRegistries.BLOCKS, Cmdb26sQOLMod.MOD_ID);
 
     public static final RegistryObject<Block> RUBY_ORE = registerBlock("ruby_ore",
-            () -> new Block(AbstractBlock.Properties.create(Material.ROCK)
+            () -> new ModOreBlock(AbstractBlock.Properties.create(Material.ROCK)
                     .harvestLevel(2).harvestTool(ToolType.PICKAXE)
                     .setRequiresTool().hardnessAndResistance(3f)));
 

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "minecraft:carrot"
+  },
+  "result": "cmdb26sqolmod:roasted_carrot",
+  "experience": 0.35,
+  "cookingtime": 100
+}

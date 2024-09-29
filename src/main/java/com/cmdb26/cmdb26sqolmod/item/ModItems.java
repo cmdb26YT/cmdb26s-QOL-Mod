@@ -8,7 +8,6 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
-
 public class ModItems {
 
     public static final DeferredRegister<Item> ITEMS =
@@ -19,20 +18,14 @@ public class ModItems {
     public static final RegistryObject<Item> RUBY = ITEMS.register("ruby",
             () -> new Item(new Item.Properties().group(ModItemGroup.mod_tab_1)));
 
-    public static final RegistryObject<Item> EMERALD = ITEMS.register("emerald",
-            () -> new Item(new Item.Properties().group(ModItemGroup.mod_tab_1)));
-
-    public static final RegistryObject<Item> NETHER_STAR = ITEMS.register("netherstar",
-            () -> new Item(new Item.Properties().group(ModItemGroup.mod_tab_1)));
-
     public static final RegistryObject<Item> APPLE_PIE = ITEMS.register("apple_pie",
             () -> new Item(new Item.Properties()
-                    .food(new Food.Builder().hunger(8).saturation(4.8f).build())
+                    .food(new Food.Builder().hunger(8).saturation(0.3f).build())
                     .group(ItemGroup.FOOD)));
 
     public static final RegistryObject<Item> ROASTED_CARROT = ITEMS.register("roasted_carrot",
             () -> new Item(new Item.Properties()
-                    .food(new Food.Builder().hunger(6).saturation(6.0f).build())
+                    .food(new Food.Builder().hunger(7).saturation(0.57142857142f).build())
                     .group(ItemGroup.FOOD)));
 
 
