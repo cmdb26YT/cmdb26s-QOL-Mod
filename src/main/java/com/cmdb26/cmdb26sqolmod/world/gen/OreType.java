@@ -6,7 +6,7 @@ import net.minecraftforge.common.util.Lazy;
 
 public enum OreType {
 
-    RUBY(Lazy.of(ModBlocks.RUBY_ORE), 8, 1, 32, 2);
+    RUBY(Lazy.of(ModBlocks.RUBY_ORE), 8, 1, 32, 4);
 
     private final Lazy<Block> block;
     private final int maxVeinSize;
