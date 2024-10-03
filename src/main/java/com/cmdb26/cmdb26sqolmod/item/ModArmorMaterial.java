@@ -15,13 +15,13 @@ import java.util.function.Supplier;
 
 public enum ModArmorMaterial implements IArmorMaterial {
 
-    RUBY("ruby", new float[] {327.0f, 87.5f, 45.4f, 142.5f},
+    RUBY("ruby", new float[] {327.0f, 87.5f, 71.166666f, 90.66666f},
             new int[] { 2, 5, 6, 2 }, 12,
             SoundEvents.ITEM_ARMOR_EQUIP_IRON, 6f, 0.0f, () -> {
         return Ingredient.fromItems(ModItems.RUBY.get());
     }),
 
-    EMERALD("emerald", new float[] {455.0f, 131.25f, 95.4f, 128.4f}, new int[] { 3, 6, 8, 3 }, 12,
+    EMERALD("emerald", new float[] {455.0f, 131.25f, 92.5f, 128.4f}, new int[] { 3, 6, 8, 3 }, 12,
             SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 0.0f, 0.2f, () -> {
         return Ingredient.fromItems(Items.EMERALD);
     }),
