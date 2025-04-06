@@ -1,6 +1,7 @@
 package com.cmdb26.cmdb26sqolmod.item;
 
 import com.cmdb26.cmdb26sqolmod.Cmdb26sQOLMod;
+import com.cmdb26.cmdb26sqolmod.item.custom.BowlReturnFoodItem;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -28,6 +29,10 @@ public class ModItems {
                     .food(new Food.Builder().hunger(7).saturation(0.57142857142f).build())
                     .group(ItemGroup.FOOD)));
 
+    public static final RegistryObject<Item> MASHED_POTATO = ITEMS.register("mashed_potato",
+            () -> new BowlReturnFoodItem(new Item.Properties()
+                    .food(new Food.Builder().hunger(6).saturation(0.4f).build())
+                    .group(ItemGroup.FOOD)));
 
     //  Tools
 
