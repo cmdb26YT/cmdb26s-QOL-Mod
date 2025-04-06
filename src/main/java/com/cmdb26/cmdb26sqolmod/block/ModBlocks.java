@@ -1,6 +1,7 @@
 package com.cmdb26.cmdb26sqolmod.block;
 
 import com.cmdb26.cmdb26sqolmod.Cmdb26sQOLMod;
+import com.cmdb26.cmdb26sqolmod.block.custom.QuarryBlock;
 import com.cmdb26.cmdb26sqolmod.item.ModItemGroup;
 import com.cmdb26.cmdb26sqolmod.item.ModItems;
 import net.minecraft.block.AbstractBlock;
@@ -36,6 +37,13 @@ public class ModBlocks {
             () -> new Block(AbstractBlock.Properties.create(Material.ICE)
                     .sound(SoundType.GLASS).harvestLevel(2).harvestTool(ToolType.PICKAXE)
                     .setRequiresTool().hardnessAndResistance(7.5f)));
+
+    public static final RegistryObject<Block> QUARRY_BLOCK = registerBlock("quarry_block",
+            () -> new QuarryBlock(AbstractBlock.Properties.create(Material.IRON)
+                    .sound(SoundType.BONE).harvestLevel(0).harvestTool(ToolType.PICKAXE)
+                    .hardnessAndResistance(0.5f)));
+
+
 
     private static <T extends Block>RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);

@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": { "model": "cmdb26sqolmod:block/quarry_block" }
+  }
+}
