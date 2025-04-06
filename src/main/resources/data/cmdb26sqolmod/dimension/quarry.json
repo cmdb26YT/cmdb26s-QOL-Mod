@@ -1,0 +1,60 @@
+{
+  "type": "cmdb26sqolmod:quarry",
+  "generator": {
+    "type": "minecraft:flat",
+    "settings": {
+      "biome": "minecraft:plains",
+      "lakes": false,
+      "features": false,
+      "layers": [
+        {
+          "height": 1,
+          "block": "minecraft:bedrock"
+        },
+        {
+          "height": 5,
+          "block": "minecraft:netherite_block"
+        },
+        {
+          "height": 5,
+          "block": "minecraft:nether_quartz_ore"
+        },
+        {
+          "height": 5,
+          "block": "minecraft:emerald_ore"
+        },
+        {
+          "height": 5,
+          "block": "minecraft:diamond_ore"
+        },
+        {
+          "height": 5,
+          "block": "cmdb26sqolmod:ruby_ore"
+        },
+        {
+          "height": 5,
+          "block": "minecraft:lapis_ore"
+        },
+        {
+          "height": 5,
+          "block": "minecraft:redstone_ore"
+        },
+        {
+          "height": 10,
+          "block": "minecraft:gold_block"
+        },
+        {
+          "height": 10,
+          "block": "minecraft:iron_block"
+        },
+        {
+          "height": 5,
+          "block": "minecraft:coal_ore"
+        }
+      ],
+      "structures": {
+        "structures": {}
+      }
+    }
+  }
+}
