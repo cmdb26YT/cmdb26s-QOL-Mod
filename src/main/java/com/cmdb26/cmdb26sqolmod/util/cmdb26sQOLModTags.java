@@ -12,7 +12,11 @@ public class cmdb26sQOLModTags {
 
     public static class Blocks {
 
-        public static final Tags.IOptionalNamedTag<Block> RUBY_ORE = createTag("ruby_ore");
+        public static final Tags.IOptionalNamedTag<Block> RUBY_ORE = createForgeTag("ores/ruby");
+
+        public static final Tags.IOptionalNamedTag<Block> RUBY_BLOCK = createForgeTag("storage_blocks/ruby");
+
+        public static final Tags.IOptionalNamedTag<Block> NETHER_STAR_BLOCK = createForgeTag("storage_blocks/nether_star");
 
         private static Tags.IOptionalNamedTag<Block> createTag(String name) {
             return BlockTags.createOptional(new ResourceLocation(Cmdb26sQOLMod.MOD_ID, name));
@@ -26,6 +30,14 @@ public class cmdb26sQOLModTags {
     public static class Items {
 
         public static final Tags.IOptionalNamedTag<Item> RUBY = createForgeTag("gems/ruby");
+
+        public static final Tags.IOptionalNamedTag<Item> APPLE_PIE = createForgeTag("foods/pie");
+
+        public static final Tags.IOptionalNamedTag<Item> ROASTED_CARROT = createForgeTag("foods/vegetable");
+
+        public static final Tags.IOptionalNamedTag<Item> MASHED_POTATO = createForgeTag("foods/vegetable");
+
+
 
         private static Tags.IOptionalNamedTag<Item> createTag(String name) {
             return ItemTags.createOptional(new ResourceLocation(Cmdb26sQOLMod.MOD_ID, name));
