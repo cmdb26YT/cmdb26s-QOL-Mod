@@ -19,7 +19,7 @@ modId="cmdb26sqolmod" #mandatory
 # The version number of the mod - there's a few well known ${} variables useable here or just hardcode it
 # ${file.jarVersion} will substitute the value of the Implementation-Version as read from the mod's JAR file metadata
 # see the associated build.gradle script for how to populate this completely automatically during a build
-version="1.1.0-1.16.5" #mandatory
+version="1.2.0-1.16.5" #mandatory
  # A display name for the mod
 displayName="cmdb26's QOL Mod" #mandatory
 # A URL to query for updates for this mod. See the JSON update specification https://mcforge.readthedocs.io/en/latest/gettingstarted/autoupdate/
@@ -34,7 +34,7 @@ credits="Thanks for my mod goes to Modding by Kaupenjoe and of course the Java a
 authors="cmdb26" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description='''
-A QoL mod that adds rubies and ruby gear, emerald gear, nether star gear, and new food items that should be in the game.
+A QoL mod that adds rubies and ruby gear, emerald gear, nether star gear, new food items, and more that should be in the game.
 '''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 [[dependencies.cmdb26sqolmod]] #optional

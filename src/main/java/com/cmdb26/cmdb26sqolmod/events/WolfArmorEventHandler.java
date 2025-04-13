@@ -2,13 +2,16 @@ package com.cmdb26.cmdb26sqolmod.events;
 
 import com.cmdb26.cmdb26sqolmod.item.ModItems;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -32,38 +35,56 @@ public class WolfArmorEventHandler {
         if (!player.world.isRemote && entity instanceof WolfEntity) {
             WolfEntity wolf = (WolfEntity) entity;
 
-            if (wolf.isTamed() && wolf.getOwner() == player) {
+            if (!wolf.isTamed() || wolf.getOwner() != player) return;
 
-                if (isWolfArmor(heldItem)) {
-                    // Check if the wolf already has armor
-                    CompoundNBT persistentData = wolf.getPersistentData();
-                    CompoundNBT wolfArmorData = persistentData.getCompound("WolfArmor");
+            CompoundNBT persistentData = wolf.getPersistentData();
+            CompoundNBT wolfArmorData = persistentData.getCompound("WolfArmor");
 
-                    if (wolfArmorData.contains("ArmorItem")) {
-                        // Already armored, do nothing
-                        return;
+            // Shift + Right-click = Unequip armor (regardless of hand contents)
+            if (player.isSneaking() && wolfArmorData.contains("ArmorItem")) {
+                CompoundNBT itemTag = wolfArmorData.getCompound("ArmorItem");
+                ItemStack storedArmor = ItemStack.read(itemTag);
+
+                if (!player.isCreative()) {
+                    // Return the item to player or drop it
+                    if (!player.inventory.addItemStackToInventory(storedArmor)) {
+                        wolf.entityDropItem(storedArmor, 0.5f);
                     }
-
-                    // Otherwise, apply the armor
-                    CompoundNBT itemTag = new CompoundNBT();
-                    heldItem.write(itemTag);
-                    wolfArmorData.put("ArmorItem", itemTag);
-                    persistentData.put("WolfArmor", wolfArmorData);
-
-                    WOLF_ARMOR_MAP.put(wolf.getUniqueID(), heldItem.copy());
-
-                    if (!player.isCreative()) {
-                        heldItem.shrink(1);
-                    }
-
-                    wolf.world.playSound(null, wolf.getPosition(), SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, SoundCategory.NEUTRAL, 1.0F, 1.0F);
-
-                    event.setCanceled(true);
-                    event.setCancellationResult(ActionResultType.SUCCESS);
                 }
+
+                // Clear armor data either way
+                wolfArmorData.remove("ArmorItem");
+                persistentData.put("WolfArmor", wolfArmorData);
+                WOLF_ARMOR_MAP.remove(wolf.getUniqueID());
+
+                wolf.world.playSound(null, wolf.getPosition(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 1.0F, 1.0F);
+
+                event.setCanceled(true);
+                event.setCancellationResult(ActionResultType.SUCCESS);
+                return;
+            }
+
+            //  Equip armor if not already armored
+            if (isWolfArmor(heldItem) && !wolfArmorData.contains("ArmorItem")) {
+                CompoundNBT itemTag = new CompoundNBT();
+                heldItem.write(itemTag);
+                wolfArmorData.put("ArmorItem", itemTag);
+                persistentData.put("WolfArmor", wolfArmorData);
+
+                WOLF_ARMOR_MAP.put(wolf.getUniqueID(), heldItem.copy());
+
+                if (!player.isCreative()) {
+                    heldItem.shrink(1);
+                }
+
+                wolf.world.playSound(null, wolf.getPosition(), SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+
+                event.setCanceled(true);
+                event.setCancellationResult(ActionResultType.SUCCESS);
             }
         }
     }
+
     private static boolean isWolfArmor(ItemStack stack) {
         return stack.getItem() == ModItems.WOLF_ARMOR.get();
     }
@@ -109,5 +130,28 @@ public class WolfArmorEventHandler {
         }
 
         event.setAmount(reduced);
+    }
+    @SubscribeEvent
+    public static void onWolfDeath(LivingDeathEvent event) {
+        if (!(event.getEntityLiving() instanceof WolfEntity)) return;
+
+        WolfEntity wolf = (WolfEntity) event.getEntityLiving();
+
+        if (!wolf.isTamed()) return;
+
+        ItemStack armor = WOLF_ARMOR_MAP.get(wolf.getUniqueID());
+        if (armor == null || armor.isEmpty()) return;
+
+        // Drop the armor in the world if on server side
+        if (!wolf.world.isRemote) {
+            ServerWorld world = (ServerWorld) wolf.world;
+            ItemStack drop = armor.copy();
+            ItemEntity entityItem = new ItemEntity(world,
+                    wolf.getPosX(), wolf.getPosY(), wolf.getPosZ(), drop);
+            world.addEntity(entityItem);
+        }
+
+        // Clean up from the tracking map
+        WOLF_ARMOR_MAP.remove(wolf.getUniqueID());
     }
 }

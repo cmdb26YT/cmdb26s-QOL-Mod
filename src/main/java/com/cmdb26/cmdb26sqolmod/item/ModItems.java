@@ -106,7 +106,14 @@ public class ModItems {
 
     //      Wolf Armor
     public static final RegistryObject<Item> WOLF_ARMOR = ITEMS.register("wolf_armor",
-            () -> new Item(new Item.Properties().maxStackSize(1).group(ModItemGroup.mod_tab_1)));
+            () -> new Item(new Item.Properties()
+                    .maxStackSize(1).group(ModItemGroup.mod_tab_1)));
+
+
+    //      Horse Armor
+    public static final RegistryObject<Item> NETHERITE_HORSE_ARMOR = ITEMS.register("netherite_horse_armor",
+            () -> new HorseArmorItem(15, "netherite",
+                    new Item.Properties().maxStackSize(1).group(ModItemGroup.mod_tab_1)));
 
 
     //      Ruby Armor

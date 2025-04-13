@@ -23,6 +23,7 @@ public class ModItemGroup {
             items.add(new ItemStack(ModBlocks.NETHER_STAR_BLOCK.get()));
             items.add(new ItemStack(ModBlocks.QUARRY_BLOCK.get()));
             items.add(new ItemStack(ModItems.WOLF_ARMOR.get()));
+            items.add(new ItemStack(ModItems.NETHERITE_HORSE_ARMOR.get()));
             items.add(new ItemStack(ModItems.RUBY.get()));
             items.add(new ItemStack(ModItems.RUBY_SWORD.get()));
             items.add(new ItemStack(ModItems.RUBY_PICKAXE.get()));
