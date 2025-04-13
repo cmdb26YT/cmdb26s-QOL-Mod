@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  y",
+    "yxy",
+    "y y"
+  ],
+  "key": {
+    "x": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "y": {
+      "item": "minecraft:diamond"
+    }
+  },
+  "result": {
+    "item": "cmdb26sqolmod:wolf_armor"
+  }
+}

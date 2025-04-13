@@ -15,7 +15,8 @@ public class ModItems {
             DeferredRegister.create(ForgeRegistries.ITEMS, Cmdb26sQOLMod.MOD_ID);
 
 
-    //  Materials
+    //  Materials/Food
+
     public static final RegistryObject<Item> RUBY = ITEMS.register("ruby",
             () -> new Item(new Item.Properties().group(ModItemGroup.mod_tab_1)));
 
@@ -33,6 +34,7 @@ public class ModItems {
             () -> new BowlReturnFoodItem(new Item.Properties()
                     .food(new Food.Builder().hunger(6).saturation(0.4f).build())
                     .group(ItemGroup.FOOD)));
+
 
     //  Tools
 
@@ -102,6 +104,11 @@ public class ModItems {
 
     //  Armor
 
+    //      Wolf Armor
+    public static final RegistryObject<Item> WOLF_ARMOR = ITEMS.register("wolf_armor",
+            () -> new Item(new Item.Properties().maxStackSize(1).group(ModItemGroup.mod_tab_1)));
+
+
     //      Ruby Armor
     public static final RegistryObject<Item> RUBY_HELMET = ITEMS.register("ruby_helmet",
             () -> new ArmorItem(ModArmorMaterial.RUBY, EquipmentSlotType.HEAD,
@@ -118,6 +125,7 @@ public class ModItems {
     public static final RegistryObject<Item> RUBY_BOOTS = ITEMS.register("ruby_boots",
             () -> new ArmorItem(ModArmorMaterial.RUBY, EquipmentSlotType.FEET,
                     new Item.Properties().group(ModItemGroup.mod_tab_1)));
+
 
     //      Emerald Armor
     public static final RegistryObject<Item> EMERALD_HELMET = ITEMS.register("emerald_helmet",
