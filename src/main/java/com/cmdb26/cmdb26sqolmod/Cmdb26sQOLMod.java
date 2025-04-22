@@ -2,6 +2,7 @@ package com.cmdb26.cmdb26sqolmod;
 
 import com.cmdb26.cmdb26sqolmod.block.ModBlocks;
 import com.cmdb26.cmdb26sqolmod.item.ModItems;
+import com.cmdb26.cmdb26sqolmod.network.WolfArmorNetwork;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
@@ -53,6 +54,10 @@ public class Cmdb26sQOLMod {
 
 
     private void setup(final FMLCommonSetupEvent event) {
+
+        event.enqueueWork(WolfArmorNetwork::register);
+
+
         // some preinit code
         LOGGER.info("HELLO FROM PREINIT");
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
