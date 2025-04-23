@@ -16,6 +16,7 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -61,15 +62,8 @@ public class WolfArmorEventHandler {
                 persistentData.put("WolfArmor", wolfArmorData);
                 WOLF_ARMOR_MAP.remove(wolf.getUniqueID());
 
-                if (!player.world.isRemote && player.world instanceof ServerWorld) {
-                    ServerWorld serverWorld = (ServerWorld) player.world;
-                    for (ServerPlayerEntity p : serverWorld.getPlayers()) {
-                        WolfArmorNetwork.CHANNEL.send(
-                                PacketDistributor.PLAYER.with(() -> p),
-                                new WolfArmorSyncPacket(wolf.getUniqueID(), ItemStack.EMPTY) // or heldItem.copy() if equipping
-                        );
-                    }
-                }
+                WolfArmorNetwork.sendToTracking(wolf, new WolfArmorSyncPacket(wolf.getUniqueID(), ItemStack.EMPTY));
+
 
 
                 wolf.world.playSound(null, wolf.getPosition(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 1.0F, 1.0F);
@@ -88,15 +82,7 @@ public class WolfArmorEventHandler {
 
                 WOLF_ARMOR_MAP.put(wolf.getUniqueID(), heldItem.copy());
 
-                if (!player.world.isRemote && player.world instanceof ServerWorld) {
-                    ServerWorld serverWorld = (ServerWorld) player.world;
-                    for (ServerPlayerEntity p : serverWorld.getPlayers()) {
-                        WolfArmorNetwork.CHANNEL.send(
-                                PacketDistributor.PLAYER.with(() -> p),
-                                new WolfArmorSyncPacket(wolf.getUniqueID(), heldItem.copy())
-                        );
-                    }
-                }
+                WolfArmorNetwork.sendToTracking(wolf, new WolfArmorSyncPacket(wolf.getUniqueID(), heldItem.copy()));
 
 
                 if (!player.isCreative()) {
@@ -118,22 +104,20 @@ public class WolfArmorEventHandler {
 
     @SubscribeEvent
     public static void onWolfJoinWorld(EntityJoinWorldEvent event) {
-        Entity entity = event.getEntity();
+        if (!(event.getEntity() instanceof WolfEntity)) return;
 
-        if (!entity.world.isRemote && entity instanceof WolfEntity) {
-            WolfEntity wolf = (WolfEntity) entity;
-            CompoundNBT persistentData = wolf.getPersistentData();
+        WolfEntity wolf = (WolfEntity) event.getEntity();
+        CompoundNBT persistentData = wolf.getPersistentData();
 
-            if (persistentData.contains("WolfArmor")) {
-                CompoundNBT wolfArmorData = persistentData.getCompound("WolfArmor");
+        if (persistentData.contains("WolfArmor")) {
+            CompoundNBT wolfArmorData = persistentData.getCompound("WolfArmor");
 
-                if (wolfArmorData.contains("ArmorItem")) {
-                    CompoundNBT itemTag = wolfArmorData.getCompound("ArmorItem");
-                    ItemStack armorItem = ItemStack.read(itemTag);
+            if (wolfArmorData.contains("ArmorItem")) {
+                CompoundNBT itemTag = wolfArmorData.getCompound("ArmorItem");
+                ItemStack armorItem = ItemStack.read(itemTag);
 
-                    // Store it in the tracking map
-                    WOLF_ARMOR_MAP.put(wolf.getUniqueID(), armorItem);
-                }
+                // Only send to clients; don't store in server map
+                WolfArmorNetwork.sendToTracking(wolf, new WolfArmorSyncPacket(wolf.getUniqueID(), armorItem));
             }
         }
     }
@@ -160,7 +144,6 @@ public class WolfArmorEventHandler {
     @SubscribeEvent
     public static void onWolfDeath(LivingDeathEvent event) {
         if (!(event.getEntityLiving() instanceof WolfEntity)) return;
-            WOLF_ARMOR_MAP.remove(event.getEntityLiving().getUniqueID());
 
         WolfEntity wolf = (WolfEntity) event.getEntityLiving();
 
@@ -180,5 +163,31 @@ public class WolfArmorEventHandler {
 
         // Clean up from the tracking map
         WOLF_ARMOR_MAP.remove(wolf.getUniqueID());
+    }
+    @SubscribeEvent
+    public static void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
+        if (!(event.getPlayer() instanceof ServerPlayerEntity)) return;
+
+        ServerPlayerEntity player = (ServerPlayerEntity) event.getPlayer();
+        ServerWorld world = player.getServerWorld();
+
+        for (WolfEntity wolf : world.getEntitiesWithinAABB(WolfEntity.class, player.getBoundingBox().grow(256))) {
+            CompoundNBT persistentData = wolf.getPersistentData();
+
+            if (persistentData.contains("WolfArmor")) {
+                CompoundNBT wolfArmorData = persistentData.getCompound("WolfArmor");
+
+                if (wolfArmorData.contains("ArmorItem")) {
+                    CompoundNBT itemTag = wolfArmorData.getCompound("ArmorItem");
+                    ItemStack armorItem = ItemStack.read(itemTag);
+
+                    // Send packet to just this player
+                    WolfArmorNetwork.INSTANCE.send(
+                            PacketDistributor.PLAYER.with(() -> player),
+                            new WolfArmorSyncPacket(wolf.getUniqueID(), armorItem)
+                    );
+                }
+            }
+        }
     }
 }

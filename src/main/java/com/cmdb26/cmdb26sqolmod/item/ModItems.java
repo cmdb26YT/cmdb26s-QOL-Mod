@@ -2,8 +2,12 @@ package com.cmdb26.cmdb26sqolmod.item;
 
 import com.cmdb26.cmdb26sqolmod.Cmdb26sQOLMod;
 import com.cmdb26.cmdb26sqolmod.item.custom.BowlReturnFoodItem;
+import com.cmdb26.cmdb26sqolmod.item.custom.GlintItem;
+import com.cmdb26.cmdb26sqolmod.item.custom.ModFoodEffects;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -34,6 +38,12 @@ public class ModItems {
             () -> new BowlReturnFoodItem(new Item.Properties()
                     .food(new Food.Builder().hunger(6).saturation(0.4f).build())
                     .group(ItemGroup.FOOD)));
+
+    public static final RegistryObject<Item> ENCHANTED_GOLDEN_CARROT = ITEMS.register("enchanted_golden_carrot",
+            () -> new GlintItem(new Item.Properties()
+                    .group(ItemGroup.FOOD).rarity(Rarity.RARE).food(ModFoodEffects.ENCHANTED_GOLDEN_CARROT_EFFECTS)
+            )
+    );
 
 
     //  Tools

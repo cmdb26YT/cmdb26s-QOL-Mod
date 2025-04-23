@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#x#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:gold_ingot"
+    },
+    "x": {
+      "item": "minecraft:carrot"
+    }
+  },
+  "result": {
+    "item": "cmdb26sqolmod:enchanted_golden_carrot"
+  }
+}
